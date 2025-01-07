@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface UrlMappingRepository extends JpaRepository<UrlMapping, Long>
 {
-    UrlMappingRepository findByShortUrl(String shortUrl);
+    UrlMapping findByShortUrl(String shortUrl);
+
     List<UrlMapping> findByUser(User user);
 }
