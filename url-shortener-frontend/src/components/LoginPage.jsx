@@ -4,11 +4,13 @@ import {Link, useNavigate} from "react-router-dom";
 import TextField from "./TextFeild.jsx";
 import toast from "react-hot-toast";
 import api from "../api/api.js";
+import {useStoreContext} from "../contextApi/ContextApi.jsx";
 
 function LoginPage()
 {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(false);
+    const { setToken } = useStoreContext();
 
     const {
         register,
@@ -32,6 +34,7 @@ function LoginPage()
                 data
             );
             console.log(response.token);
+            setToken(response.token);
             // Store the token in localstorage
             localStorage.setItem("JWT_TOKEN", JSON.stringify(response.token));
             toast.success("Login Successful!");
